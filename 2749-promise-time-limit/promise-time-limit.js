@@ -3,24 +3,18 @@
  * @param {number} t
  * @return {Function}
  */
-var timeLimit = function(fn, t) {
-    
-    
-    return async function(...args) {
-        return new Promise( async (resolve,reject)=>{
-         let timeId = setTimeout(()=>{
-                reject("Time Limit Exceeded");
-            },t);
-        try{
-         let res= await  fn(...args);
-            resolve(res);
-        }catch(err){
-            reject(err);
-            clearTimeout(timeId)
-        }
-       
-        })
-    }
+var timeLimit = function (fn, t) {
+  return async function (...args) {
+    return new Promise((res, rej) => {
+      const id = setTimeout(() => {
+        rej("Time Limit Exceeded");
+      }, t);
+      fn(...args)
+        .then((s) => res(s))
+        .catch((e) => rej(e))
+        .finally(() => clearTimeout(id));
+    });
+  };
 };
 
 /**
