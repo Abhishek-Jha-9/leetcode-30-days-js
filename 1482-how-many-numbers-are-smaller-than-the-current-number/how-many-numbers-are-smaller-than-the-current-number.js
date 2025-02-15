@@ -3,13 +3,10 @@
  * @return {number[]}
  */
 var smallerNumbersThanCurrent = function(nums) {
-    let map = new Map()
-    const cp = [...nums];
-    cp.sort((a,b)=>a-b).map((i,indx)=>{
-        if(!map.has(i)){
-            map.set(i,indx);
-        }
-    })
+    let map = new Map();
+      [...nums].sort((a, b) => a - b).forEach((num, idx) => 
+        map.has(num) || map.set(num, idx)
+    );
     return nums.map((i)=>map.get(i));
 
 };
