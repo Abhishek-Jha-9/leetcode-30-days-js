@@ -3,7 +3,12 @@
  * @return {number}
  */
 var minTimeToVisitAllPoints = function(points) {
-    return points.slice(1).reduce((ans, [x, y], i) => 
-        ans + Math.max(Math.abs(x - points[i][0]), Math.abs(y - points[i][1]))
-    , 0);
+    let [p1x,p1y] =  points.pop();
+    let ans =0;
+    while (points.length){
+        const [p2x,p2y]= points.pop()
+        ans += Math.max(Math.abs(p2x-p1x),Math.abs(p2y-p1y));
+        [p1x,p1y] = [p2x,p2y];
+    }
+    return ans 
 };
