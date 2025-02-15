@@ -10,9 +10,11 @@ var spiralOrder = function(matrix) {
         ans.push(...matrix.shift())
      
         // pick for down
-      for (let i = 0; i < matrix.length; i++) {
-            if (matrix[i].length) ans.push(matrix[i].pop());
-        }
+     for (let i = 0; i < matrix.length; i++) {
+    if (matrix[i].length) ans.push(matrix[i].pop());
+}
+        
+       
 
         // pick left
         if(matrix.length){
